@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparativa de Certificaciones Sostenibles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #054C50; /* Color base solicitado */
+            --bg-light: #e6efef;       /* Tono verde claro adaptado para armonía visual */
+            --bg-white: #ffffff;
+            --text-color: #2c3e50;
+            --border-color: #cbdad8;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f3f6f6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .table-container {
+            width: 100%;
+            max-width: 1200px;
+            box-shadow: 0 12px 40px rgba(5, 76, 80, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: var(--bg-white);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th, td {
+            padding: 15px 12px;
+            font-size: 13.5px;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            line-height: 1.4;
+            vertical-align: middle;
+            text-align: center; /* Alineación centrada general como en la imagen */
+        }
+
+        /* --- CONTROL DE PROPORCIÓN DE COLUMNAS (20% cada una) --- */
+        th:nth-child(1), td:nth-child(1) { width: 20%; text-align: center; font-weight: 600; color: #111; }
+        th:nth-child(2), td:nth-child(2) { width: 20%; }
+        th:nth-child(3), td:nth-child(3) { width: 20%; }
+        th:nth-child(4), td:nth-child(4) { width: 20%; }
+        th:nth-child(5), td:nth-child(5) { width: 20%; }
+
+        /* --- ENCABEZADOS --- */
+        thead th {
+            background-color: var(--primary-color);
+            color: var(--bg-white);
+            font-weight: 600;
+            font-size: 14.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 18px 12px;
+            animation: slideDown 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+        }
+
+        /* Alternancia de color en las filas (Zebra Striping) */
+        tbody tr:nth-child(even) td {
+            background-color: var(--bg-light);
+        }
+        tbody tr:nth-child(odd) td {
+            background-color: var(--bg-white);
+        }
+
+        /* --- ANIMACIONES EN CASCADA --- */
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        tbody tr {
+            opacity: 0;
+            animation: fadeInUp 0.45s ease forwards;
+        }
+
+        /* Retrasos secuenciales calculados para las 9 filas */
+        tbody tr:nth-child(1) { animation-delay: 0.05s; }
+        tbody tr:nth-child(2) { animation-delay: 0.10s; }
+        tbody tr:nth-child(3) { animation-delay: 0.15s; }
+        tbody tr:nth-child(4) { animation-delay: 0.20s; }
+        tbody tr:nth-child(5) { animation-delay: 0.25s; }
+        tbody tr:nth-child(6) { animation-delay: 0.30s; }
+        tbody tr:nth-child(7) { animation-delay: 0.35s; }
+        tbody tr:nth-child(8) { animation-delay: 0.40s; }
+        tbody tr:nth-child(9) { animation-delay: 0.45s; }
+
+        /* Efecto Hover interactivo */
+        tbody tr:hover td {
+            background-color: rgba(5, 76, 80, 0.06) !important;
+            transition: background-color 0.15s ease;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Criterio</th>
+                    <th>LEED</th>
+                    <th>BREEAM</th>
+                    <th>EDGE</th>
+                    <th>CASA Colombia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Origen</td>
+                    <td>EE.UU.</td>
+                    <td>Reino Unido</td>
+                    <td>IFC (Banco Mundial)</td>
+                    <td>Colombia (CCCS)</td>
+                </tr>
+                <tr>
+                    <td>Enfoque</td>
+                    <td>Integral</td>
+                    <td>Integral técnico</td>
+                    <td>Eficiencia de recursos</td>
+                    <td>Adaptación local</td>
+                </tr>
+                <tr>
+                    <td>Complejidad</td>
+                    <td>Alta</td>
+                    <td>Alta</td>
+                    <td>Media</td>
+                    <td>Media-baja</td>
+                </tr>
+                <tr>
+                    <td>Costo</td>
+                    <td>Alto</td>
+                    <td>Alto</td>
+                    <td>Medio</td>
+                    <td>Bajo</td>
+                </tr>
+                <tr>
+                    <td>Aplicación</td>
+                    <td>Global</td>
+                    <td>Global (principalmente Europa)</td>
+                    <td>Países en desarrollo</td>
+                    <td>Colombia</td>
+                </tr>
+                <tr>
+                    <td>Tipo de proyectos</td>
+                    <td>Todo tipo</td>
+                    <td>Todo tipo</td>
+                    <td>Vivienda y comercial</td>
+                    <td>Países en desarrollo</td>
+                </tr>
+                <tr>
+                    <td>Reconocimiento</td>
+                    <td>Muy alto</td>
+                    <td>Muy alto</td>
+                    <td>Alto</td>
+                    <td>Nacional</td>
+                </tr>
+                <tr>
+                    <td>Facilidad de aplicación</td>
+                    <td>Baja</td>
+                    <td>Baja</td>
+                    <td>Alta</td>
+                    <td>Alta</td>
+                </tr>
+                <tr>
+                    <td>Enfoque clave</td>
+                    <td>Sostenibilidad integral</td>
+                    <td>Evaluación técnica rigurosa</td>
+                    <td>Ahorro en agua, energía y materiales</td>
+                    <td>Contexto climático y social</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
