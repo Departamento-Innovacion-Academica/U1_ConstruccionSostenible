@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificación BREEAM y Sostenibilidad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos Base - Estilo Apple Light */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: #ffffff; /* Fondo claro puro de Apple */
+            color: #1d1d1f; /* Texto casi negro de Apple */
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Encabezado Centrado Estilo Apple Hero */
+        .intro-header {
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            background: linear-gradient(180deg, #1d1d1f 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        /* Instrucción Flotante Fija */
+        .floating-instruction {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 12px 24px;
+            border-radius: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            pointer-events: none;
+        }
+
+        .floating-instruction span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: #86868b;
+            text-transform: uppercase;
+        }
+
+        /* Icono del Mouse */
+        .mouse-icon {
+            width: 22px;
+            height: 36px;
+            border: 2px solid #1d1d1f;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .mouse-wheel {
+            width: 4px;
+            height: 8px;
+            background-color: #0066cc;
+            border-radius: 2px;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollWheel 1.6s infinite ease-in-out;
+        }
+
+        @keyframes scrollWheel {
+            0% { top: 6px; opacity: 1; }
+            50% { top: 14px; opacity: 0.3; }
+            100% { top: 6px; opacity: 1; }
+        }
+
+        /* Contenedor del Scroll */
+        .zoom-scroll-container {
+            width: 100%;
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 0 30px 20vh 30px;
+        }
+
+        /* Contenedor Sticky */
+        .card-wrapper {
+            position: sticky;
+            top: 15vh;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40vh; /* Controla la separación y previene el desorden */
+        }
+
+        /* Tarjeta Estilo Apple con corrección de superposición */
+        .card {
+            background: rgba(245, 245, 247, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 24px;
+            padding: 45px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+            
+            /* Animación fluida de entrada y salida */
+            animation: appleZoomInOut linear both;
+            animation-timeline: view();
+            animation-range: entry 0% exit 100%; 
+        }
+
+        /* Animación perfeccionada para evitar colisiones */
+        @keyframes appleZoomInOut {
+            0% {
+                transform: scale(0.85) translateY(50px);
+                opacity: 0;
+            }
+            25%, 70% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.9) translateY(-50px);
+                opacity: 0; /* Se oculta por completo antes del montaje de la siguiente */
+            }
+        }
+
+        /* Estilo del Párrafo */
+        .card p {
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1.8;
+            color: #1d1d1f;
+            text-align: left;
+        }
+
+        .card p strong {
+            color: #000000;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-instruction">
+        <div class="mouse-icon">
+            <div class="mouse-wheel"></div>
+        </div>
+        <span>Haga scroll para ampliar la información</span>
+    </div>
+
+    <header class="intro-header">
+        <h1>Evaluación Ambiental de Edificaciones<br>Certificación BREEAM</h1>
+    </header>
+
+    <main class="zoom-scroll-container">
+
+        <div class="card-wrapper">
+            <div class="card">
+                <p>La certificación BREEAM (Building Research Establishment Environmental Assessment Method) es uno de los sistemas de evaluación ambiental de edificaciones más antiguos y consolidados a nivel mundial. Fue desarrollado en 1990 por el Building Research Establishment (BRE) en el Reino Unido, con el propósito de evaluar y mejorar el desempeño ambiental de los edificios a lo largo de su ciclo de vida <strong>(BREEAM, 2021)</strong>.</p>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="card">
+                <p>BREEAM ha evolucionado y se ha adaptado a distintos países mediante esquemas locales, lo que ha permitido su expansión a nivel internacional <strong>(Viezzer & Biondi, 2021)</strong>.</p>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="card">
+                <p>El objetivo principal de BREEAM es promover prácticas constructivas sostenibles desde las etapas iniciales del diseño hasta la operación del edificio, integrando criterios ambientales, sociales y económicos en la evaluación del desempeño. A diferencia de otros sistemas, se caracteriza por su alto nivel de rigurosidad técnica y su enfoque multicriterio, lo que permite una valoración integral de la sostenibilidad en edificaciones. En la actualidad, BREEAM es ampliamente utilizado en Europa y ha sido implementado en diferentes tipos de proyectos, incluyendo edificaciones residenciales, comerciales, institucionales e industriales. Su consolidación como sistema de certificación responde, en gran medida, a su capacidad de adaptación y a su enfoque basado en evidencia técnica y científica.</p>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="card">
+                <p>Desde una perspectiva académica, BREEAM representa un referente clave en la evolución de los sistemas de evaluación ambiental, al introducir metodologías estructuradas y cuantificables que han servido de base para el desarrollo de otros esquemas de certificación. En este sentido, su estudio permite comprender la transición hacia modelos de construcción más sostenibles y la incorporación de criterios ambientales en la toma de decisiones dentro del sector <strong>(Pexas & otros, 2021)</strong>.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="outro-footer" style="height: 40vh; display: flex; justify-content: center; align-items: center; color: #86868b; font-size: 0.9rem;">
+        <p>Copyright © 2026 — Arquitectura Sostenible y Evaluación Multicriterio.</p>
+    </footer>
+
+</body>
+</html>
