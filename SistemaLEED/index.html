@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjetas Interactivas LEED</title>
+    <!-- Cargamos Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #054C50; /* Tu nuevo color base */
+            --accent-color: #0a696f;   /* Una variante sutilmente más clara para el degradado */
+            --bg-card-front: #ffffff;
+            --bg-card-back: #054C50;
+            --text-front: #1a202c;
+            --text-back: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* Instrucción flotante en la parte superior derecha */
+        .instruction-banner {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(5, 76, 80, 0.1);
+            color: var(--primary-color);
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(5, 76, 80, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            pointer-events: none;
+            animation: pulse 2s infinite ease-in-out;
+            z-index: 10;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.03); opacity: 1; box-shadow: 0 6px 16px rgba(5, 76, 80, 0.15); }
+            100% { transform: scale(1); opacity: 0.9; }
+        }
+
+        /* Contenedor de la tarjeta (Perspectiva) */
+        .flip-card {
+            background-color: transparent;
+            width: 300px;
+            height: 220px;
+            perspective: 1500px; 
+            cursor: pointer;
+        }
+
+        /* Contenedor interno (Giro controlado por clase 'is-flipped') */
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 24px;
+        }
+
+        /* Efecto de elevación al pasar el mouse antes del clic */
+        .flip-card:hover .flip-card-inner {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Clase activada por JavaScript al hacer clic */
+        .flip-card-inner.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* Caras frontal y trasera */
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 24px;
+            box-sizing: border-box;
+            padding: 24px;
+        }
+
+        /* Diseño de la Cara Frontal */
+        .flip-card-front {
+            background-color: var(--bg-card-front);
+            color: var(--text-front);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        /* Decoración sutil de fondo en la cara frontal */
+        .flip-card-front::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(5, 76, 80, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .flip-card-front i {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Pequeña animación en el icono al pasar el mouse */
+        .flip-card:hover .flip-card-inner:not(.is-flipped) .flip-card-front i {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        .flip-card-front h2 {
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Diseño de la Cara Trasera */
+        .flip-card-back {
+            background: linear-gradient(135deg, var(--bg-card-back) 0%, var(--accent-color) 100%);
+            color: var(--text-back);
+            transform: rotateY(180deg);
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.2);
+        }
+
+        .flip-card-back p {
+            font-size: 1.3rem;
+            margin: 0;
+            font-weight: 600;
+            line-height: 1.5;
+            letter-spacing: 0.2px;
+        }
+
+        /* Ajuste responsivo para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .instruction-banner {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 20px;
+                width: 100%;
+                justify-content: center;
+            }
+            body {
+                flex-direction: column;
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Instrucción Flotante -->
+    <div class="instruction-banner">
+        <i class="fa-solid fa-hand-pointer"></i>
+        <span>Haga clic sobre las tarjetas para ampliar la información.</span>
+    </div>
+
+    <!-- Tarjeta 1: LEED BD+C -->
+    <div class="flip-card" onclick="toggleFlip(this)">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <i class="fa-solid fa-building"></i>
+                <h2>LEED BD+C</h2>
+            </div>
+            <div class="flip-card-back">
+                <p>Building Design and Construction</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tarjeta 2: LEED O+M -->
+    <div class="flip-card" onclick="toggleFlip(this)">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <h2>LEED O+M</h2>
+            </div>
+            <div class="flip-card-back">
+                <p>Operations and Maintenance</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tarjeta 3: LEED ID+C -->
+    <div class="flip-card" onclick="toggleFlip(this)">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <i class="fa-solid fa-couch"></i>
+                <h2>LEED ID+C</h2>
+            </div>
+            <div class="flip-card-back">
+                <p>Interior Design and Construction</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript para alternar el giro en el clic -->
+    <script>
+        function toggleFlip(card) {
+            const cardInner = card.querySelector('.flip-card-inner');
+            cardInner.classList.toggle('is-flipped');
+        }
+    </script>
+
+</body>
+</html>
