@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceso de Certificación EDGE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos Base - Estilo Apple Light */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: #ffffff; /* Fondo claro puro de Apple */
+            color: #1d1d1f; /* Texto casi negro de Apple */
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Encabezado Centrado Estilo Apple Hero */
+        .intro-header {
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            background: linear-gradient(180deg, #1d1d1f 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        /* Instrucción Flotante Fija */
+        .floating-instruction {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 12px 24px;
+            border-radius: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            pointer-events: none;
+        }
+
+        .floating-instruction span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: #86868b;
+            text-transform: uppercase;
+        }
+
+        /* Icono del Mouse */
+        .mouse-icon {
+            width: 22px;
+            height: 36px;
+            border: 2px solid #1d1d1f;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .mouse-wheel {
+            width: 4px;
+            height: 8px;
+            background-color: #0066cc;
+            border-radius: 2px;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollWheel 1.6s infinite ease-in-out;
+        }
+
+        @keyframes scrollWheel {
+            0% { top: 6px; opacity: 1; }
+            50% { top: 14px; opacity: 0.3; }
+            100% { top: 6px; opacity: 1; }
+        }
+
+        /* Contenedor del Scroll */
+        .zoom-scroll-container {
+            width: 100%;
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 0 30px 20vh 30px;
+        }
+
+        /* Contenedor Sticky */
+        .card-wrapper {
+            position: sticky;
+            top: 15vh;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40vh; /* Control de separación para transiciones limpias */
+        }
+
+        /* Tarjeta Estilo Apple con corrección de superposición */
+        .card {
+            background: rgba(245, 245, 247, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 24px;
+            padding: 45px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+            
+            /* Animación fluida de entrada y salida */
+            animation: appleZoomInOut linear both;
+            animation-timeline: view();
+            animation-range: entry 0% exit 100%; 
+        }
+
+        /* Animación perfeccionada para evitar colisiones */
+        @keyframes appleZoomInOut {
+            0% {
+                transform: scale(0.85) translateY(50px);
+                opacity: 0;
+            }
+            25%, 70% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.9) translateY(-50px);
+                opacity: 0; /* Desvanece por completo antes de montar la siguiente tarjeta */
+            }
+        }
+
+        /* Estilo del Párrafo */
+        .card p {
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1.8;
+            color: #1d1d1f;
+            text-align: left;
+        }
+
+        .card p strong {
+            color: #000000;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-instruction">
+        <div class="mouse-icon">
+            <div class="mouse-wheel"></div>
+        </div>
+        <span>Haga scroll para ampliar la información</span>
+    </div>
+
+    <header class="intro-header">
+        <h1>Fases del Proceso y<br>Certificación EDGE</h1>
+    </header>
+
+    <main class="zoom-scroll-container">
+
+        <div class="card-wrapper">
+            <div class="card">
+                <p>Posteriormente, during la fase de diseño, se seleccionan e implementan estrategias que permitan alcanzar al menos un 20% de reducción en los tres componentes evaluados. En este punto, la herramienta EDGE cumple una función tanto técnica como formativa, al facilitar la comparación entre alternativas constructivas y su impacto ambiental. En este sentido, investigaciones recientes señalan que la integración de criterios de sostenibilidad en la etapa de diseño es determinante para lograr edificaciones de alto desempeño ambiental <strong>(Carretero & Sáez, 2021)</strong>.</p>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="card">
+                <p>Una vez definido el diseño, el proceso continúa con la verificación por parte de un auditor independiente acreditado, quien revisa la documentación técnica y valida el cumplimiento de los criterios establecidos. Esta auditoría se realiza tanto en fase de diseño como en fase de construcción, garantizando coherencia entre lo proyectado y lo ejecutado. La verificación independiente sigue siendo un elemento clave para asegurar la transparencia y confiabilidad de los sistemas de certificación ambiental en el contexto actual.</p>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="card">
+                <p>Finalmente, tras la validación del cumplimiento de los requisitos, se otorga la certificación EDGE al proyecto. Este esquema asegura el desempeño ambiental del edificio y fortalece los procesos de control de calidad durante la ejecución. Además, investigaciones recientes han demostrado que las certificaciones ambientales contribuyen de manera significativa a la reducción del impacto ambiental del sector construcción y al cumplimiento de metas de sostenibilidad global <strong>(Minunno & otros, 2021)</strong>.</p>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="card">
+                <p>Desde una perspectiva académica, el proceso EDGE puede entenderse como una herramienta de aprendizaje aplicada, ya que su enfoque basado en simulación y toma de decisiones facilita la comprensión de la relación entre diseño, eficiencia de recursos y sostenibilidad. Esto se alinea con tendencias actuales en educación en construcción sostenible, donde se prioriza el aprendizaje práctico y basado en herramientas digitales <strong>(Voisin & otros, 2020)</strong>.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="outro-footer" style="height: 40vh; display: flex; justify-content: center; align-items: center; color: #86868b; font-size: 0.9rem;">
+        <p>Copyright © 2026 — Simulación Digital y Eficiencia de Recursos.</p>
+    </footer>
+
+</body>
+</html>
