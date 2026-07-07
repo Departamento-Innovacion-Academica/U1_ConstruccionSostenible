@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilares de Certificación Animados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-card: #fdfaf2;
+            --text-main: #2d3748;
+            --text-muted: #1a202c;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 24px;
+            padding: 40px 32px;
+            width: 100%;
+            max-width: 340px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        /* --- ANIMACIÓN DEL TÍTULO (Caída desde arriba) --- */
+        .card-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 36px;
+            line-height: 1.2;
+            animation: dropFromTop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+        }
+
+        @keyframes dropFromTop {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .pillars-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .pillar-item {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* --- ANIMACIÓN DE LAS IMÁGENES (Zoom Out / Impacto desde la pantalla) --- */
+        .pillar-icon-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Necesario para posicionar el humo */
+        }
+
+        .pillar-icon {
+            width: 100%;
+            height: auto;
+            max-width: 48px;
+            object-fit: contain;
+            opacity: 0;
+            /* Se aplica la animación de impacto */
+            animation: zoomOutImpact 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+        }
+
+        @keyframes zoomOutImpact {
+            0% {
+                transform: scale(3); /* Viene "desde la pantalla/espectador" hacia el fondo */
+                filter: blur(4px);
+                opacity: 0;
+            }
+            70% {
+                transform: scale(0.9);
+                filter: blur(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* --- EFECTO DE HUMO / IMPACTO --- */
+        .smoke-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        /* Cloquamos dos ondas de humo simuladas con pseudo-elementos */
+        .smoke-effect::before, .smoke-effect::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 10px;
+            height: 10px;
+            background: rgba(180, 180, 180, 0.4);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            animation: smokeRelease 0.5s ease-out both;
+        }
+
+        @keyframes smokeRelease {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+            30% {
+                /* El humo aparece justo cuando la imagen hace el impacto fuerte a los 0.4s */
+                opacity: 0.7;
+                filter: blur(2px);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(4);
+                opacity: 0;
+                filter: blur(6px);
+            }
+        }
+
+        /* --- ANIMACIÓN DEL TEXTO (Derecha a izquierda con rebote) --- */
+        .pillar-text {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-muted);
+            line-height: 1.3;
+            text-align: left;
+            opacity: 0;
+            animation: slideInBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+        }
+
+        @keyframes slideInBounce {
+            0% {
+                transform: translateX(150px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* --- CONTROL DE TIEMPOS ESCALONADOS (Delays) --- */
+        /* Retrasos dinámicos para que los elementos aparezcan uno tras otro de arriba a abajo */
+        
+        /* Fila 1 */
+        .pillar-item:nth-child(1) .pillar-icon { animation-delay: 0.4s; }
+        .pillar-item:nth-child(1) .smoke-effect::before { animation-delay: 0.8s; }
+        .pillar-item:nth-child(1) .smoke-effect::after { animation-delay: 0.85s; }
+        .pillar-item:nth-child(1) .pillar-text { animation-delay: 0.6s; }
+
+        /* Fila 2 */
+        .pillar-item:nth-child(2) .pillar-icon { animation-delay: 0.6s; }
+        .pillar-item:nth-child(2) .smoke-effect::before { animation-delay: 1.0s; }
+        .pillar-item:nth-child(2) .smoke-effect::after { animation-delay: 1.05s; }
+        .pillar-item:nth-child(2) .pillar-text { animation-delay: 0.8s; }
+
+        /* Fila 3 */
+        .pillar-item:nth-child(3) .pillar-icon { animation-delay: 0.8s; }
+        .pillar-item:nth-child(3) .smoke-effect::before { animation-delay: 1.2s; }
+        .pillar-item:nth-child(3) .smoke-effect::after { animation-delay: 1.25s; }
+        .pillar-item:nth-child(3) .pillar-text { animation-delay: 1.0s; }
+
+        /* Fila 4 */
+        .pillar-item:nth-child(4) .pillar-icon { animation-delay: 1.0s; }
+        .pillar-item:nth-child(4) .smoke-effect::before { animation-delay: 1.4s; }
+        .pillar-item:nth-child(4) .smoke-effect::after { animation-delay: 1.45s; }
+        .pillar-item:nth-child(4) .pillar-text { animation-delay: 1.2s; }
+
+        /* Fila 5 */
+        .pillar-item:nth-child(5) .pillar-icon { animation-delay: 1.2s; }
+        .pillar-item:nth-child(5) .smoke-effect::before { animation-delay: 1.6s; }
+        .pillar-item:nth-child(5) .smoke-effect::after { animation-delay: 1.65s; }
+        .pillar-item:nth-child(5) .pillar-text { animation-delay: 1.4s; }
+
+        /* Fila 6 */
+        .pillar-item:nth-child(6) .pillar-icon { animation-delay: 1.4s; }
+        .pillar-item:nth-child(6) .smoke-effect::before { animation-delay: 1.8s; }
+        .pillar-item:nth-child(6) .smoke-effect::after { animation-delay: 1.85s; }
+        .pillar-item:nth-child(6) .pillar-text { animation-delay: 1.6s; }
+
+    </style>
+</head>
+<body>
+
+    <main class="card">
+        <h2 class="card-title">Pilares de Certificación</h2>
+        
+        <ul class="pillars-list">
+            <li class="pillar-item">
+                <div class="pillar-icon-wrapper">
+                    <img src="img1.png" alt="Icono de Sitio y entorno" class="pillar-icon">
+                    <div class="smoke-effect"></div>
+                </div>
+                <span class="pillar-text">Sitio y entorno</span>
+            </li>
+            
+            <li class="pillar-item">
+                <div class="pillar-icon-wrapper">
+                    <img src="img2.png" alt="Icono de Energía" class="pillar-icon">
+                    <div class="smoke-effect"></div>
+                </div>
+                <span class="pillar-text">Energía</span>
+            </li>
+            
+            <li class="pillar-item">
+                <div class="pillar-icon-wrapper">
+                    <img src="img3.png" alt="Icono de Agua" class="pillar-icon">
+                    <div class="smoke-effect"></div>
+                </div>
+                <span class="pillar-text">Agua</span>
+            </li>
+            
+            <li class="pillar-item">
+                <div class="pillar-icon-wrapper">
+                    <img src="img4.png" alt="Icono de Materiales y residuos" class="pillar-icon">
+                    <div class="smoke-effect"></div>
+                </div>
+                <span class="pillar-text">Materiales y residuos</span>
+            </li>
+            
+            <li class="pillar-item">
+                <div class="pillar-icon-wrapper">
+                    <img src="img5.png" alt="Icono de Calidad ambiental interior" class="pillar-icon">
+                    <div class="smoke-effect"></div>
+                </div>
+                <span class="pillar-text">Calidad ambiental interior</span>
+            </li>
+            
+            <li class="pillar-item">
+                <div class="pillar-icon-wrapper">
+                    <img src="img6.png" alt="Icono de Gestión y educación" class="pillar-icon">
+                    <div class="smoke-effect"></div>
+                </div>
+                <span class="pillar-text">Gestión y educación</span>
+            </li>
+        </ul>
+    </main>
+
+</body>
+</html>
